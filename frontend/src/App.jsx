@@ -1,46 +1,53 @@
-import { useEffect } from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import HomePage from './pages/HomePage';
-import Settings from './pages/Settings';
-import ProfilePic from './pages/ProfilePic';
-import SignUp from './pages/SignUp';
-import { useAuthStore } from './store/useAuthStore';
-import Loginpage from './pages/Loginpage';
+import Navbar from "./components/Navbar";
+
+import HomePage from "./pages/HomePage";
+
+import LoginPage from "./pages/LoginPage";
+import Settings from "./pages/Settings";
+import ProfilePic from "./pages/ProfilePic";
+
+import { Routes, Route, Navigate } from "react-router-dom";
+import { useAuthStore } from "./store/useAuthStore";
+import { useThemeStore } from "./store/useThemeStore";
+import { useEffect } from "react";
+
 import { Loader } from "lucide-react";
-import { Toaster } from 'react-hot-toast';
+import { Toaster } from "react-hot-toast";
+import SignUp from "./pages/SignUp";
 
 const App = () => {
-  const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
+  const { authUser, checkAuth, isCheckingAuth, onlineUsers } = useAuthStore();
+  const { theme } = useThemeStore();
+
+  console.log({ onlineUsers });
 
   useEffect(() => {
     checkAuth();
   }, [checkAuth]);
 
-  console.log("Auth User:", authUser);
+  console.log({ authUser });
 
-  if (isCheckingAuth && !authUser) {
+  if (isCheckingAuth && !authUser)
     return (
-      <div className='flex items-center justify-center h-screen'>
-        <Loader className="size-30 animate-spin"/>
+      <div className="flex items-center justify-center h-screen">
+        <Loader className="size-10 animate-spin" />
       </div>
     );
-  }
-  
-  return (
-    <div data-theme="retro">
 
+  return (
+    <div data-theme={theme}>
       <Navbar />
+
       <Routes>
-        <Route path="/" element={authUser ? <HomePage />: <Navigate to="/login"/>} />
-        <Route path="/login" element={!authUser ?<Loginpage />:<Navigate to ="/"/>} />
-        <Route path="/settings" element={<Settings />} />
-        <Route path="/profile" element={authUser ?<ProfilePic />:<Navigate to ="/login"/>} />
-        <Route path="/signup" element={!authUser?<SignUp />:<Navigate to ="/"/>} />
+        <Route path="/" element={authUser ? <HomePage /> : <Navigate to="/login" />} />
+        <Route path="/signup" element={!authUser ? <SignUp /> : <Navigate to="/" />} />
+        <Route path="/login" element={!authUser ? <LoginPage /> : <Navigate to="/" />} />
+        <Route path="/settings" element={<Settings/>} />
+        <Route path="/profile" element={authUser ? <ProfilePic /> : <Navigate to="/login" />} />
       </Routes>
-      <Toaster/>
+
+      <Toaster />
     </div>
   );
 };
-
 export default App;
