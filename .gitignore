@@ -1,18 +1,2 @@
-
-
-# Other common ignores
 node_modules/
-dist/
-dist-ssr/
-
-# Editor directories and files
-.vscode/*
-.idea/
-.DS_Store
-
-# Environment files
 .env
-
-# OS generated files
-Thumbs.db
-Desktop.ini
