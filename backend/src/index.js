@@ -20,6 +20,7 @@ const origins = [
   "http://localhost:5173",
   "https://chat-app-full-git-main-carthick0s-projects.vercel.app",
   "https://chat-app-full-seven.vercel.app",
+  "https://chat-app-full-nupfn0ym3-carthick0s-projects.vercel.app/signup",
 ];
 
 app.use(
