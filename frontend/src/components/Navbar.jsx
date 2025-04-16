@@ -4,13 +4,18 @@ import { LogOut, MessageSquare, Settings, User } from "lucide-react";
 
 const Navbar = () => {
   const { logout, authUser } = useAuthStore();
-
+  console.log("check...");
   return (
-    <header className="border-b border-gray-200 fixed w-full top-0 z-50 
-      backdrop-blur-lg bg-opacity-90 shadow-sm bg-indigo-600">
+    <header
+      className="border-b border-gray-200 fixed w-full top-0 z-50 
+      backdrop-blur-lg bg-opacity-90 shadow-sm bg-indigo-600"
+    >
       <div className="container mx-auto px-6 lg:px-12 h-16 flex items-center justify-between">
         {/* Logo Section */}
-        <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-all">
+        <Link
+          to="/"
+          className="flex items-center gap-3 hover:opacity-80 transition-all"
+        >
           <div className="size-10 rounded-lg bg-primary/10 flex items-center justify-center">
             <MessageSquare className="w-5 h-5 text-primary text-white" />
           </div>
@@ -24,7 +29,9 @@ const Navbar = () => {
             className="btn btn-sm btn-outline flex items-center gap-2 hover:bg-primary/20 transition-all"
           >
             <Settings className="w-6 h-6 text-white" />
-            <span className="hidden sm:inline text-white w-6 h-6 pr-13">Settings</span>
+            <span className="hidden sm:inline text-white w-6 h-6 pr-13">
+              Settings
+            </span>
           </Link>
 
           {authUser && (
@@ -34,7 +41,9 @@ const Navbar = () => {
                 className="btn btn-sm btn-outline flex items-center gap-2 hover:bg-primary/20 transition-all"
               >
                 <User className="w-6 h-6 text-white " />
-                <span className="hidden sm:inline text-white w-6 h-6 pr-13">Profile</span>
+                <span className="hidden sm:inline text-white w-6 h-6 pr-13">
+                  Profile
+                </span>
               </Link>
 
               <button
